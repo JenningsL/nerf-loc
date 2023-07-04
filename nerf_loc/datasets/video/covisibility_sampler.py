@@ -112,9 +112,9 @@ class CovisibilitySampling(object):
         return list(samples.keys())
 
 if __name__ == '__main__':
-    from configs import config_parser
-    from datasets import build_dataset
-    from utils.common import colorize_np
+    from nerf_loc.configs import config_parser
+    from nerf_loc.datasets import build_dataset
+    from nerf_loc.utils.common import colorize_np
     parser = config_parser()
     args = parser.parse_args()
 

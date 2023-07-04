@@ -19,9 +19,8 @@ import trimesh
 from tqdm import tqdm
 import subprocess
 
-from datasets.colmap.read_write_model import *
-from datasets.colmap.cli import run_colmap_mvs
-# from third_party.NeuRay.colmap.read_write_dense import read_array
+from nerf_loc.datasets.colmap.read_write_model import *
+from nerf_loc.datasets.colmap.cli import run_colmap_mvs
 
 '''
 render depth maps are downloaded from https://github.com/vislearn/LessMore

@@ -1,5 +1,7 @@
-torch==1.8.1 
+pytorch==1.8.1
 torchvision==0.9.1
+# torchaudio==0.8.1
+pytorch_lightning==1.6.0
 imageio
 imageio-ffmpeg
 matplotlib
@@ -7,7 +9,7 @@ configargparse
 tensorboard>=2.0
 tqdm
 opencv-python
-spconv-cu111
+# spconv-cu111
 pycolmap>=0.1.0
 scikit-image
 scikit-learn
@@ -21,5 +23,4 @@ omegaconf==2.2.0
 yacs==0.1.8
 lmdb
 inplace_abn
-pytorch3d
 transforms3d

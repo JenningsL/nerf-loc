@@ -15,10 +15,10 @@ import torch
 import pytorch_lightning as pl
 from pytorch_lightning.loggers import TensorBoardLogger
 from model import Model
-from datasets import build_dataset
+from nerf_loc.datasets import build_dataset
 
-from models.nerf_pose_estimator import NerfPoseEstimator
-from configs import get_cfg_defaults, override_cfg_with_args
+from nerf_loc.models.nerf_pose_estimator import NerfPoseEstimator
+from nerf_loc.configs import get_cfg_defaults, override_cfg_with_args
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
@@ -110,7 +110,7 @@ if __name__ == '__main__':
         gradient_clip_val=1.0,
         resume_from_checkpoint=resume_from_checkpoint
     )
-    if resume_from_checkpoint is None and cfg.ckpt is not None:
+    if resume_from_checkpoint is None and cfg.ckpt:
         print('load pretrain weights: ', cfg.ckpt)
         model.load_ckpt(cfg.ckpt)
     

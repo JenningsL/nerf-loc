@@ -28,7 +28,7 @@ class Resize(object):
         K = scale_K(K, scale_w, scale_h)
 
         img = Image.fromarray(img)
-        img = img.resize((self.w, self.h), resample=Image.ANTIALIAS)
+        img = img.resize((self.w, self.h), resample=Image.LANCZOS)
         img = np.asarray(img)
 
         depth = Image.fromarray(depth)
@@ -61,7 +61,7 @@ class ResizeAndCrop(object):
         resize_w = int(round(scale * w))
 
         img = Image.fromarray(img)
-        img = img.resize((resize_w, resize_h), resample=Image.ANTIALIAS)
+        img = img.resize((resize_w, resize_h), resample=Image.LANCZOS)
         img = np.asarray(img)
 
         depth = Image.fromarray(depth)
@@ -110,7 +110,7 @@ class DownSample(object):
         K = scale_K(K, target_w/w, target_h/h)
 
         img = Image.fromarray(img)
-        img = img.resize((target_w, target_h), resample=Image.ANTIALIAS)
+        img = img.resize((target_w, target_h), resample=Image.LANCZOS)
         img = np.asarray(img)
 
         depth = Image.fromarray(depth)
@@ -171,7 +171,7 @@ class RandomZoom(object):
         K[1,2] += padding_top
 
         # img = Image.fromarray(img)
-        # img = img.resize((target_w, target_h), resample=Image.ANTIALIAS)
+        # img = img.resize((target_w, target_h), resample=Image.LANCZOS)
         # img = np.asarray(img)
 
         # depth = Image.fromarray(depth)

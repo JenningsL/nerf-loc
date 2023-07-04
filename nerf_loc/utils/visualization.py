@@ -62,8 +62,8 @@ def images_to_video(image_folder, video_save_path):
     imageio.mimwrite(video_save_path, imgs, fps=30, quality=8)
 
 if __name__ == '__main__':
-    # from configs import config_parser
-    # from datasets import build_dataset
+    # from nerf_loc.configs import config_parser
+    # from nerf_loc.datasets import build_dataset
     # parser = config_parser()
     # args = parser.parse_args()
 

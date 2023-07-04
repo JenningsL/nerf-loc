@@ -20,11 +20,11 @@ import math
 import pickle as pkl
 from collections import defaultdict
 
-import models.image_retrieval as image_retrieval
-from models.image_retrieval.base_model import dynamic_load
+import nerf_loc.models.image_retrieval as image_retrieval
+from nerf_loc.models.image_retrieval.base_model import dynamic_load
 
-from datasets import build_dataset
-from utils.metrics import compute_pose_error
+from nerf_loc.datasets import build_dataset
+from nerf_loc.utils.metrics import compute_pose_error
 
 configs = {
     'dir': {
@@ -230,7 +230,7 @@ def evaluate_image_retrieval(db_poses_dict, query_poses_dict, top_k_pairs, rot_t
 
 if __name__ == '__main__':
     import argparse
-    from configs import get_cfg_defaults
+    from nerf_loc.configs import get_cfg_defaults
     parser = argparse.ArgumentParser()
     parser.add_argument('--config', type=str, help='config file path')
     args = parser.parse_args()

@@ -26,7 +26,7 @@ def build_dataset(args, split, phase='pose'):
         from .video.dataset import VideoDataset
         from .video.multi_scene_dataset import MultiSceneDataset
         cfg_name = args.dataset_type.split('_')[1]
-        cfg_file = f'configs/data/{cfg_name}.yaml'
+        cfg_file = f'nerf_loc/configs/data/{cfg_name}.yaml'
         cfg = yaml.load(open(cfg_file), Loader=yaml.FullLoader)
         if phase == 'nerf':
             # no geometry augmentation during nerf training

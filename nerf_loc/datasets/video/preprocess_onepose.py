@@ -20,8 +20,8 @@ import shutil
 import trimesh
 from utils.common import is_inside_box3d
 
-from datasets.colmap.read_write_model import read_model, write_model, Image
-from datasets.colmap.cli import run_colmap_mvs
+from nerf_loc.datasets.colmap.read_write_model import read_model, write_model, Image
+from nerf_loc.datasets.colmap.cli import run_colmap_mvs
 
 def copy_sfm_model(input_path, output_path):
     cameras, images, points3D = read_model(path=input_path)

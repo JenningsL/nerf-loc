@@ -22,13 +22,13 @@ import os
 import trimesh
 import copy
 import numpy as np
-from utils.common import batched_angular_dist_rot_matrix
+from nerf_loc.utils.common import batched_angular_dist_rot_matrix
 
-from datasets.colmap.read_write_model import read_model,qvec2rotmat
-from datasets.video.transform import ResizeAndCrop
-from utils.visualization import project_3d_points
-from datasets.video.reader import read_array, read_pfm
-from datasets.furthest_pose_sampler import FurtherPoseSampling
+from nerf_loc.datasets.colmap.read_write_model import read_model,qvec2rotmat
+from nerf_loc.datasets.video.transform import ResizeAndCrop
+from nerf_loc.utils.visualization import project_3d_points
+from nerf_loc.datasets.video.reader import read_array, read_pfm
+from nerf_loc.datasets.furthest_pose_sampler import FurtherPoseSampling
 
 class ColmapDataset(Dataset):
     def __init__(self, args, dense_path, split, depth_type='mvsnet'):

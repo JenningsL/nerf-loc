@@ -24,7 +24,7 @@ from nerf_loc.utils.metrics import compute_pose_error
 from .utils import camera_project
 from nerf_loc.datasets.colmap.read_write_model import qvec2rotmat
 
-from .pose_optimizer import PoseOptimizer
+# from .pose_optimizer import PoseOptimizer
 from .conditional_nerf.utils import get_embedder
 from .conditional_nerf.model import ConditionalNeRF
 from .conditional_nerf.model_simple import ConditionalNeRFSimple
@@ -38,7 +38,7 @@ class NerfPoseEstimator(nn.Module):
         self.hidden_dim = hidden_dim = args.matcher_hidden_dim
         if args.backbone2d == 'cotr':
             self.backbone2d = build_cotr_backbone(
-                model_path='models/COTR/default/checkpoint.pth.tar', 
+                model_path='nerf_loc/models/COTR/default/checkpoint.pth.tar', 
                 return_layers=['conv1', 'layer1', 'layer2'], 
                 train_backbone=True, use_fpn=args.backbone2d_use_fpn, fpn_dim=args.backbone2d_fpn_dim)
         else:
@@ -88,8 +88,8 @@ class NerfPoseEstimator(nn.Module):
         else:
             self.model_3d = ConditionalNeRF(self.args)
 
-        if self.args.optimize_pose:
-            self.pose_optimizer = PoseOptimizer(args, self.model_3d, debug=False, use_feat=False)
+        # if self.args.optimize_pose:
+        #     self.pose_optimizer = PoseOptimizer(args, self.model_3d, debug=False, use_feat=False)
 
     def extract_2d(self, imgs):
         """
@@ -389,19 +389,19 @@ class NerfPoseEstimator(nn.Module):
                     data['feat_pyramid']['layer1'], 
                     size=(data['H'], data['W']), mode='bilinear', align_corners=False).permute(0,2,3,1)[0]
 
-        if self.args.optimize_pose:
-            pose = data['pose'] # gt
-            T_init = torch.tensor(outputs['T']).float().to(data['desc_3d'].device) # predict
-            # T_init = data['topk_poses'][0] # nearest pose
+        # if self.args.optimize_pose:
+        #     pose = data['pose'] # gt
+        #     T_init = torch.tensor(outputs['T']).float().to(data['desc_3d'].device) # predict
+        #     # T_init = data['topk_poses'][0] # nearest pose
             
-            rot_err_init, trans_err_init = compute_pose_error(T_init.detach().cpu().numpy(), pose.cpu().numpy())
-            print('before pose optimization: ', rot_err_init, trans_err_init)
-            T = self.pose_optimizer(T_init, data, max_steps=50, lr=0.001)
-            rot_err_refine, trans_err_refine = compute_pose_error(T.detach().cpu().numpy(), pose.cpu().numpy())
-            print('after pose optimization: ', rot_err_refine, trans_err_refine)
+        #     rot_err_init, trans_err_init = compute_pose_error(T_init.detach().cpu().numpy(), pose.cpu().numpy())
+        #     print('before pose optimization: ', rot_err_init, trans_err_init)
+        #     T = self.pose_optimizer(T_init, data, max_steps=50, lr=0.001)
+        #     rot_err_refine, trans_err_refine = compute_pose_error(T.detach().cpu().numpy(), pose.cpu().numpy())
+        #     print('after pose optimization: ', rot_err_refine, trans_err_refine)
 
-            T = T.detach().cpu().numpy()
-            outputs['T'] = T
+        #     T = T.detach().cpu().numpy()
+        #     outputs['T'] = T
 
         return outputs
 

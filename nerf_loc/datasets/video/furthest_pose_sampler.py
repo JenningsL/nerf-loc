@@ -14,7 +14,7 @@ import os
 from collections import defaultdict
 import copy
 
-from utils.common import batched_angular_dist_rot_matrix
+from nerf_loc.utils.common import batched_angular_dist_rot_matrix
 
 def get_next_FPS_sample(candidates, samples):
     candidates_name = list(candidates.keys())
@@ -63,9 +63,9 @@ class FurtherPoseSampling(object):
         return list(samples.keys())
 
 if __name__ == '__main__':
-    from configs import config_parser
-    from datasets import build_dataset
-    from utils.common import colorize_np
+    from nerf_loc.configs import config_parser
+    from nerf_loc.datasets import build_dataset
+    from nerf_loc.utils.common import colorize_np
     import trimesh
     parser = config_parser()
     args = parser.parse_args()
